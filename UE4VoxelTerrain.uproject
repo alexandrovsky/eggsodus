@@ -1,0 +1,18 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "4.15",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "UE4VoxelTerrain",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"UnrealSandboxTerrain",
+				"Engine",
+				"UMG"
+			]
+		}
+	]
+}
