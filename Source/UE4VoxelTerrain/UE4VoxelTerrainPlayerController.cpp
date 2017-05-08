@@ -5,6 +5,7 @@
 #include "AI/Navigation/NavigationSystem.h"
 #include "SandboxTerrainController.h"
 #include "SandboxCharacter.h"
+#include "UE4VoxelTerrainCharacter.h"
 
 AUE4VoxelTerrainPlayerController::AUE4VoxelTerrainPlayerController() {
 	tool_mode = 1;
@@ -18,6 +19,8 @@ void AUE4VoxelTerrainPlayerController::SetupInputComponent() {
 	// set up gameplay key bindings
 	Super::SetupInputComponent();
 
+	InputComponent->BindAction("fireWeapon", IE_Pressed, this, &AUE4VoxelTerrainPlayerController::fireWeaponInput);
+
 	InputComponent->BindAction("0", IE_Pressed, this, &AUE4VoxelTerrainPlayerController::setTool0);
 	InputComponent->BindAction("1", IE_Pressed, this, &AUE4VoxelTerrainPlayerController::setTool1);
 	InputComponent->BindAction("2", IE_Pressed, this, &AUE4VoxelTerrainPlayerController::setTool2);
@@ -26,6 +29,12 @@ void AUE4VoxelTerrainPlayerController::SetupInputComponent() {
 	InputComponent->BindAction("5", IE_Pressed, this, &AUE4VoxelTerrainPlayerController::setTool5);
 	InputComponent->BindAction("6", IE_Pressed, this, &AUE4VoxelTerrainPlayerController::setTool6);
 	InputComponent->BindAction("7", IE_Pressed, this, &AUE4VoxelTerrainPlayerController::setTool7);
+}
+
+
+void AUE4VoxelTerrainPlayerController::fireWeaponInput() {
+	AUE4VoxelTerrainCharacter* pawn = Cast<AUE4VoxelTerrainCharacter>(GetCharacter());
+	pawn->fireWeapon();
 }
 
 void AUE4VoxelTerrainPlayerController::OnMainActionPressed() {

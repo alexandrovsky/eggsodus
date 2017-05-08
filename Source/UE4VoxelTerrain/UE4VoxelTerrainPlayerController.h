@@ -30,7 +30,6 @@ protected:
 	void PerformAction();
 
 public:
-
 	int tool_mode = 0;
 
 	FHitResult TracePlayerActionPoint();
@@ -38,6 +37,8 @@ public:
 private:
 
 	FTimerHandle timer;
+
+	void fireWeaponInput();
 
 	void setTool0();
 	
