@@ -9,12 +9,20 @@ FPlayerRepositoryImpl::FPlayerRepositoryImpl()
 
 FEggPlayer& FPlayerRepositoryImpl::FindCurrentPlayer()
 {
-	return Players[CurrentPlayer];
+	return *(Players[CurrentPlayer]);
 }
 
-void FPlayerRepositoryImpl::AddPlayer(FEggPlayer& Player)
+void FPlayerRepositoryImpl::AddPlayer(FEggPlayer& InPlayer)
 {
-	Players.Add(Player);
+	bool contains = false;
+	for (FEggPlayer* Player : Players)
+		if (Player->GetId() == InPlayer.GetId()) {
+			contains = true;
+			break;
+		}
+	if (!contains)
+		Players.Add(&InPlayer);
+	UE_LOG(LogTemp, Warning, TEXT("Players : %i"), Players.Num());
 }
 
 void FPlayerRepositoryImpl::NextTurn()

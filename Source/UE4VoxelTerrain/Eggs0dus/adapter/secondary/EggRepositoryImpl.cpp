@@ -6,13 +6,14 @@ FEggRepositoryImpl::FEggRepositoryImpl()
 
 }
 
-TArray<UEgg&> FEggRepositoryImpl::FindEggsByPlayerId(int32 PlayerId)
+TArray<UEgg*> FEggRepositoryImpl::FindEggsByPlayerId(int32 PlayerId)
 {
-	TArray<UEgg&> Results;
-	for (UEgg& egg : Eggs)
-		if (egg.GetPlayerId() == PlayerId)
+	TArray<UEgg*> Results;
+	for (UEgg* egg : Eggs)
+		if (egg->GetPlayerId() == PlayerId)
 			Results.Add(egg);
 	return Results;
+
 }
 
 void FEggRepositoryImpl::Initialize() {
@@ -21,5 +22,13 @@ void FEggRepositoryImpl::Initialize() {
 
 
 void FEggRepositoryImpl::AddEgg(UEgg& InEgg) {
-	Eggs.Add(InEgg);
+	bool contains = false;
+	for (UEgg* Egg : Eggs)
+		if (Egg->GetEggId() == InEgg.GetEggId()) {
+			contains = true;
+			break;
+		}
+	if (!contains)
+		Eggs.Add(&InEgg);
+	UE_LOG(LogTemp, Warning, TEXT("Eggs : %i"), Eggs.Num());
 }

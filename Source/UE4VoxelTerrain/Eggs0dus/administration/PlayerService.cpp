@@ -3,11 +3,13 @@
 
 FPlayerService::FPlayerService()
 {
-	
+	PlayerRepo = nullptr;
+	EggRepo = nullptr;
 }
 
-void FPlayerService::Initialize(int32 InTeamId, FEggRepository* InEggRepository, FPlayerRepository* InPlayerRepository, USkeletalMesh* InSkeletalMesh)
+void FPlayerService::Initialize(FEggRepository* InEggRepository, FPlayerRepository* InPlayerRepository)
 {
+	UE_LOG(LogTemp, Warning, TEXT("[ PlayerService ] [ Initialize ] - Begin"));
 	if (PlayerRepo == nullptr)
 		PlayerRepo = InPlayerRepository;
 	else
@@ -18,25 +20,24 @@ void FPlayerService::Initialize(int32 InTeamId, FEggRepository* InEggRepository,
 		delete InEggRepository;
     PlayerRepo->Initialize();
     EggRepo->Initialize();
-	PlayerRepo->AddPlayer(*new FEggPlayer(InTeamId));
-	for (int i = 0; i < 3; i++) {
-		UEgg* Egg = new UEgg();
-		Egg->Initialize(InTeamId, InSkeletalMesh);
-		EggRepo->AddEgg(*Egg);
-	}
-
 
 }
 
 void FPlayerService::UpdateTeam(float DeltaSeconds)
 {
 	FEggPlayer& CurrentPlayer = PlayerRepo->FindCurrentPlayer();
-	TArray<UEgg&> Eggs = EggRepo->FindEggsByPlayerId(CurrentPlayer.GetId());
-	Eggs[0].UpdatePosition(FVector(1, 0, 0) , DeltaSeconds);
+	//TArray<UEgg&> Eggs = EggRepo->FindEggsByPlayerId(CurrentPlayer.GetId());
+	//Eggs[0].UpdatePosition(FVector(1, 0, 0) , DeltaSeconds);
 }
 
 void FPlayerService::CreateTeam(int32 TeamId, int32 NumEggs)
 {
-	FEggPlayer* PlayerComponent = new FEggPlayer(TeamId);
+	UE_LOG(LogTemp, Warning, TEXT("[ PlayerService ] [ CreateTeam ] - Begin"));
+	PlayerRepo->AddPlayer(*new FEggPlayer(TeamId));
 
+	for (int i = 0; i < 3; i++) {
+		//UEgg* Egg = new UEgg();
+		//Egg->Initialize(InTeamId, InSkeletalMesh);
+		//EggRepo->AddEgg(*Egg);
+	}
 }

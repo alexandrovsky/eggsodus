@@ -3,17 +3,21 @@
 
 UEgg::UEgg()
 {
+	SetMobility(EComponentMobility::Movable);
+	Position = GetComponentLocation();
+	Direction = GetComponentRotation().Vector();
+	bGenerateOverlapEvents = true;
 }
-
 
 UEgg::~UEgg()
 {
-
 }
-void UEgg::Initialize(int32 InPlayerId, USkeletalMesh* InSkeletalMesh)
+
+
+void UEgg::Initialize(int32 InPlayerId, int32 InEggId, USkeletalMesh* InSkeletalMesh)
 {
 	PlayerId = InPlayerId;
-
+	EggId = InEggId;
 	SetMobility(EComponentMobility::Movable);
 	this->SetWorldScale3D(FVector(1, 1, 1));
 

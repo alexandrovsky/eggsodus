@@ -11,16 +11,16 @@ class UE4VOXELTERRAIN_API UEgg : public USkeletalMeshComponent
 public:
 	UEgg();
 	~UEgg();
-	void Initialize(int32 PlayerId, USkeletalMesh* InSkeletalMesh);
+	void Initialize(int32 PlayerId, int32 EggId, USkeletalMesh* InSkeletalMesh);
 	void UpdatePosition(const FVector& Velocity, float InDeltaSeconds);
 	void SetDirection(const FVector& InDirection) { Direction = InDirection; Direction.Normalize(); };
 	const int32 GetPlayerId() { return PlayerId; };
+	const int32 GetEggId() { return EggId; };
 private:
 	UPROPERTY()
 		FVector Position;
 	UPROPERTY()
 		FVector Direction;
-	UPROPERTY()
-		USkeletalMesh *SkelMesh;
 	int32 PlayerId;
+	int32 EggId;
 };

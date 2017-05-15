@@ -17,7 +17,7 @@ public:
 
 private:
 
-	TArray<FEggPlayer&> Players;
+	TArray<FEggPlayer*> Players;
 	int32 CurrentPlayer;
 };
 

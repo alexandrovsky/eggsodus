@@ -14,10 +14,10 @@ public:
 	void Initialize();
 
 	virtual void AddEgg(UEgg& InEgg);
-	TArray<UEgg&> FindEggsByPlayerId(int32 PlayerId);
+	TArray<UEgg*> FindEggsByPlayerId(int32 PlayerId);
 
 private:
 
-	TArray<UEgg&> Eggs;
+	TArray<UEgg*> Eggs;
 };
 

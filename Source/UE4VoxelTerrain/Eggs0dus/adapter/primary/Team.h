@@ -37,5 +37,6 @@ private:
 		USkeletalMesh* StatMesh;
 
 	UPROPERTY(EditAnywhere)
-		int32 TeamId;
+		int32 TeamId = -1;
+	bool contructed = false;
 };
