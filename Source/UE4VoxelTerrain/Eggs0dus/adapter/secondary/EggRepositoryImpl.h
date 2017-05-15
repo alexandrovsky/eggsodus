@@ -13,7 +13,11 @@ public:
 	~FEggRepositoryImpl() { };
 	void Initialize();
 
-	UEgg& FindEggsByPlayerId(int32 PlayerId) override;
+	virtual void AddEgg(UEgg& InEgg);
+	TArray<UEgg&> FindEggsByPlayerId(int32 PlayerId);
 
+private:
+
+	TArray<UEgg&> Eggs;
 };
 

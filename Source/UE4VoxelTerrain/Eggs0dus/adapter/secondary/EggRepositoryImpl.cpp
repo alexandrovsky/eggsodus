@@ -6,11 +6,20 @@ FEggRepositoryImpl::FEggRepositoryImpl()
 
 }
 
-UEgg& FEggRepositoryImpl::FindEggsByPlayerId(int32 PlayerId)
+TArray<UEgg&> FEggRepositoryImpl::FindEggsByPlayerId(int32 PlayerId)
 {
-	return *new UEgg();
+	TArray<UEgg&> Results;
+	for (UEgg& egg : Eggs)
+		if (egg.GetPlayerId() == PlayerId)
+			Results.Add(egg);
+	return Results;
 }
 
 void FEggRepositoryImpl::Initialize() {
 
+}
+
+
+void FEggRepositoryImpl::AddEgg(UEgg& InEgg) {
+	Eggs.Add(InEgg);
 }

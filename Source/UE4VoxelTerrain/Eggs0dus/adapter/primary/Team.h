@@ -23,6 +23,7 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Shutdown();
 	virtual void EndPlay(EEndPlayReason::Type EndPlayReason) override;
+	virtual FPlayerService* GetFPlayerService() { return PlayerService; }
 
 private:
 
@@ -34,4 +35,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		USkeletalMesh* StatMesh;
+
+	UPROPERTY(EditAnywhere)
+		int32 TeamId;
 };

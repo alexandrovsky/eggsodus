@@ -4,8 +4,8 @@ class UE4VOXELTERRAIN_API FEggPlayer
 {
 public:
 
-	FEggPlayer();
-	virtual ~FEggPlayer() {};
+	FEggPlayer(int32 InId);
+	virtual ~FEggPlayer();
 
 	int32 GetId() {
 		return Id;

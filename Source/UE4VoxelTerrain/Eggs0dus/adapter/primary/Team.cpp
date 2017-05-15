@@ -16,17 +16,22 @@ ATeam::~ATeam()
 void ATeam::OnConstruction(const FTransform& Transform)
 {
 	this->Initialize();
-	int32 NumberOfTeams = 3;
-	for (int32 i = 0; i < NumberOfTeams; ++i) {
-
-	}
-
 }
 
 void ATeam::Initialize()
 {
-	PlayerService = new FPlayerService();
-	PlayerService->Initialize(*new FEggRepositoryImpl(), *new FPlayerRepositoryImpl());
+	for (TActorIterator<ATeam> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+		if ((*ActorItr)->GetFPlayerService() != nullptr) {
+			PlayerService = (*ActorItr)->GetFPlayerService();
+			break;
+		}
+	if (PlayerService == nullptr) {
+		PlayerService = new FPlayerService();
+		PlayerService->Initialize(TeamId, new FEggRepositoryImpl(), new FPlayerRepositoryImpl(), StatMesh);
+	}
+	else {
+		PlayerService->CreateTeam(TeamId, 3);
+	}
 }
 void ATeam::Tick(float InDeltaSeconds)
 {

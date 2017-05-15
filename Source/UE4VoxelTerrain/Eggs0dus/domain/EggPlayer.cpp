@@ -1,7 +1,7 @@
 #include "UE4VoxelTerrain.h"
 #include "EggPlayer.h"
 
-FEggPlayer::FEggPlayer()
+FEggPlayer::FEggPlayer(int32 InId)
 {
-	Id = 111;
+	Id = InId;
 }

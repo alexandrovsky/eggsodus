@@ -12,11 +12,13 @@ public:
 	FPlayerService();
 	virtual ~FPlayerService() { };
 
-	virtual void Initialize(FEggRepository& EggRepository, FPlayerRepository& PlayerRepository);
+	virtual void Initialize(int32 InTeamId, FEggRepository* EggRepository, FPlayerRepository* PlayerRepository, USkeletalMesh* InSkeletalMesh);
 	
 	virtual void UpdateTeam(float DeltaSeconds);
 	
 	virtual void CreateTeam(int32 TeamId, int32 NumEggs);
+
+	virtual void AddPlayer(FEggPlayer& InEggPlayer);
 
 private:
 
