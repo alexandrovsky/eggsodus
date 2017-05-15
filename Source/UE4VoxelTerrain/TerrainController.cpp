@@ -20,3 +20,7 @@ void ATerrainController::OnLoadZoneListFinished() {
 	ZoneLoaderConter = 0;
 	ZoneLoaderTotal = 0;
 }
+
+void ATerrainController::digRoundHole(FVector origin, float r, float strength) {
+	this->digTerrainRoundHole(origin, r, strength);
+}

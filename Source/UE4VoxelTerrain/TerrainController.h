@@ -20,6 +20,9 @@ public:
 	int32 ZoneLoaderConter = 0;
 	int32 ZoneLoaderTotal = 0;
 
+	UFUNCTION(Category = "Terrain", BlueprintCallable)
+	void digRoundHole(FVector origin, float r, float strength);
+
 protected:
 
 	virtual void OnLoadZoneProgress(int progress, int total) override;
