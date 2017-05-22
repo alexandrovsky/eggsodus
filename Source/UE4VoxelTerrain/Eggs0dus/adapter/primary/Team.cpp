@@ -22,9 +22,6 @@ void ATeam::OnConstruction(const FTransform& Transform)
 
 void ATeam::Initialize()
 {
-	if (contructed)
-		return;
-	contructed = true;
 	UE_LOG(LogTemp, Warning, TEXT("[ Team : %i ] [ Initialize ] - Begin"), TeamId);
 	for (TActorIterator<ATeam> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 		if ((*ActorItr)->GetFPlayerService() != nullptr) {
@@ -35,14 +32,22 @@ void ATeam::Initialize()
 		PlayerService = new FPlayerService();
 		PlayerService->Initialize( new FEggRepositoryImpl(), new FPlayerRepositoryImpl());
 	}
-	if (TeamId < 0) {
+	if (TeamId < 0 || !PlayerService->TeamExist(TeamId)) {
 		TeamId = static_cast<int>(FMath::FRandRange(1.0f, 999.0f));
-		PlayerService->CreateTeam(TeamId, 3);
+
+		TArray<UEgg*> Eggs;
+		for (int i = 0; i < 3; i++) {
+			//UEgg* Egg = NewObject<UEgg>(this);
+			/*Egg->RegisterComponent();
+			Egg->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepWorldTransform);
+			Eggs.Add(Egg);*/
+		}
+		PlayerService->CreateTeam(TeamId, Eggs, SkeletalMesh);
 	}
 }
 void ATeam::Tick(float InDeltaSeconds)
 {
-	if (StatMesh == nullptr)
+	if (SkeletalMesh == nullptr)
 	{
 		return;
 	}
@@ -60,4 +65,7 @@ void ATeam::EndPlay(EEndPlayReason::Type EndPlayReason)
 }
 void ATeam::Shutdown()
 {
+	PlayerService->ShutDown();
+	delete PlayerService;
+	PlayerService = nullptr;
 }

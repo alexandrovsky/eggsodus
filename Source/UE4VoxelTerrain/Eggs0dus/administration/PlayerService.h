@@ -15,9 +15,12 @@ public:
 	virtual void Initialize(FEggRepository* EggRepository, FPlayerRepository* PlayerRepository);
 	
 	virtual void UpdateTeam(float DeltaSeconds);
-	
-	virtual void CreateTeam(int32 TeamId, int32 NumEggs);
 
+	virtual void CreateTeam(int32 TeamId, TArray<UEgg*> Eggs, USkeletalMesh* SkeletalMesh);
+
+	virtual bool TeamExist(int32 TeamId);
+
+	virtual void ShutDown();
 
 private:
 

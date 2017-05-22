@@ -32,3 +32,10 @@ void FEggRepositoryImpl::AddEgg(UEgg& InEgg) {
 		Eggs.Add(&InEgg);
 	UE_LOG(LogTemp, Warning, TEXT("Eggs : %i"), Eggs.Num());
 }
+void FEggRepositoryImpl::ShutDown() {
+
+	for (UEgg* Egg : Eggs)
+		Egg->Destroy();
+
+	Eggs.Empty();
+}

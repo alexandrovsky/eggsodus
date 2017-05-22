@@ -21,10 +21,14 @@ void UEgg::Initialize(int32 InPlayerId, int32 InEggId, USkeletalMesh* InSkeletal
 	SetMobility(EComponentMobility::Movable);
 	this->SetWorldScale3D(FVector(1, 1, 1));
 
-	//set position
-	FVector InitPosition = FMath::RandPointInBox(FBox(FVector(-100.0f, -100.0f, -10.0f), FVector(100.0f, 100.0f, 10.0f)));
+	FVector InitPosition = FMath::RandPointInBox(FBox(FVector(-100.0f, -100.0f, 400.0f), FVector(100.0f, 100.0f, 400.0f)));
 	SetRelativeLocation(InitPosition);
-	Position = GetComponentLocation();
+	SetWorldLocation(InitPosition);
+
+	UE_LOG(LogTemp, Warning, TEXT("[ UEgg : TID %i , EID %i , Pos %s ] [ Initialize ] - Begin"), InPlayerId, InEggId, *(GetComponentLocation().ToString()));
+
+
+	//set position
 	SetSkeletalMesh(InSkeletalMesh);
 }
 

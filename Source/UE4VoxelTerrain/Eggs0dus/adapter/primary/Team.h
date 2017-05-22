@@ -34,7 +34,7 @@ private:
 		USceneComponent* RootSceneComponent;
 
 	UPROPERTY(EditAnywhere)
-		USkeletalMesh* StatMesh;
+		USkeletalMesh* SkeletalMesh;
 
 	UPROPERTY(EditAnywhere)
 		int32 TeamId = -1;

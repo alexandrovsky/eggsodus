@@ -15,6 +15,7 @@ public:
 
 	virtual void AddEgg(UEgg& InEgg);
 	TArray<UEgg*> FindEggsByPlayerId(int32 PlayerId);
+	virtual void ShutDown();
 
 private:
 

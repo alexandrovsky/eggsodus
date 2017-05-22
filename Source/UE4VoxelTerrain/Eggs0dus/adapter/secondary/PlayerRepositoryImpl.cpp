@@ -12,6 +12,14 @@ FEggPlayer& FPlayerRepositoryImpl::FindCurrentPlayer()
 	return *(Players[CurrentPlayer]);
 }
 
+bool FPlayerRepositoryImpl::PlayerExist(int32 PlayerId)
+{
+	for (FEggPlayer* Player : Players)
+		if (Player->GetId() == PlayerId) 
+			return true;
+	return false;
+}
+
 void FPlayerRepositoryImpl::AddPlayer(FEggPlayer& InPlayer)
 {
 	bool contains = false;
@@ -32,4 +40,8 @@ void FPlayerRepositoryImpl::NextTurn()
 
 void FPlayerRepositoryImpl::Initialize() {
 
+}
+
+void FPlayerRepositoryImpl::ShutDown() {
+	Players.Empty();
 }

@@ -14,6 +14,8 @@ public:
 	virtual void NextTurn();
 	virtual void AddPlayer(FEggPlayer& Player) override;
 	FEggPlayer& FindCurrentPlayer() override;
+	virtual void ShutDown() override;
+	virtual bool PlayerExist(int32 PlayerId) override;
 
 private:
 

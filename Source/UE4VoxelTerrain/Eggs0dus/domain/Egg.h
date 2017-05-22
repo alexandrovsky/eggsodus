@@ -16,6 +16,7 @@ public:
 	void SetDirection(const FVector& InDirection) { Direction = InDirection; Direction.Normalize(); };
 	const int32 GetPlayerId() { return PlayerId; };
 	const int32 GetEggId() { return EggId; };
+	void Destroy() { this->DestroyComponent(); };
 private:
 	UPROPERTY()
 		FVector Position;
