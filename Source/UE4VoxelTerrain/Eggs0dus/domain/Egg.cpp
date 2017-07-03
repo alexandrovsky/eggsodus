@@ -27,8 +27,6 @@ void UEgg::Initialize(int32 InPlayerId, int32 InEggId, USkeletalMesh* InSkeletal
 
 	UE_LOG(LogTemp, Warning, TEXT("[ UEgg : TID %i , EID %i , Pos %s ] [ Initialize ] - Begin"), InPlayerId, InEggId, *(GetComponentLocation().ToString()));
 
-
-	//set position
 	SetSkeletalMesh(InSkeletalMesh);
 }
 

@@ -32,12 +32,12 @@ void FPlayerService::UpdateTeam(float DeltaSeconds)
 
 void FPlayerService::CreateTeam(int32 TeamId, TArray<UEgg*> Eggs, USkeletalMesh* SkeletalMesh)
 {
-	UE_LOG(LogTemp, Warning, TEXT("[ PlayerService ] [ CreateTeam ] - Begin"));
+	UE_LOG(LogTemp, Warning, TEXT("[ PlayerService, TeamID: %i ] [ CreateTeam ] - Begin"), TeamId);
 	if (PlayerRepo->PlayerExist(TeamId)) {
-		UE_LOG(LogTemp, Warning, TEXT("[ PlayerService ] [ CreateTeam ] - Team Exists"));
+		UE_LOG(LogTemp, Warning, TEXT("[ PlayerService, TeamID: %i ] [ CreateTeam ] - Team Exists"), TeamId);
 		return;
 	}
-	UE_LOG(LogTemp, Warning, TEXT("[ PlayerService ] [ CreateTeam ] - Create new Team"));
+	UE_LOG(LogTemp, Warning, TEXT("[ PlayerService, TeamID: %i ] [ CreateTeam ] - Create new Team"), TeamId);
 	PlayerRepo->AddPlayer(*new FEggPlayer(TeamId));
 	int i = TeamId;
 	for (UEgg* Egg : Eggs) {

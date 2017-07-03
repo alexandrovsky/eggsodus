@@ -540,6 +540,7 @@ UTerrainZoneComponent* ASandboxTerrainController::GetZoneByVectorIndex(FVector i
 
 UTerrainRegionComponent* ASandboxTerrainController::GetOrCreateRegion(FVector pos) {
 	FVector RegionIndex = GetRegionIndex(pos);
+	FVector bkp(RegionIndex);
 	UTerrainRegionComponent* RegionComponent = GetRegionByVectorIndex(RegionIndex);
 	if (RegionComponent == NULL) {
 		FString RegionName = FString::Printf(TEXT("Region -> [%.0f, %.0f, %.0f]"), RegionIndex.X, RegionIndex.Y, RegionIndex.Z);
@@ -547,7 +548,7 @@ UTerrainRegionComponent* ASandboxTerrainController::GetOrCreateRegion(FVector po
 		RegionComponent->RegisterComponent();
 		RegionComponent->AttachTo(RootComponent);
 		//RegionComponent->SetRelativeLocation(pos);
-		RegionComponent->SetWorldLocation(GetRegionPos(RegionIndex));
+		RegionComponent->SetWorldLocation(GetRegionPos(bkp));
 
 		TerrainRegionMap.Add(FVector(RegionIndex.X, RegionIndex.Y, RegionIndex.Z), RegionComponent);
 

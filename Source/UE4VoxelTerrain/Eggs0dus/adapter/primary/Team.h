@@ -19,7 +19,7 @@ public:
 	~ATeam();
 	virtual void OnConstruction(const FTransform& Transform) override;
 	virtual void Tick(float DeltaSeconds) override;
-	virtual void Initialize();
+	virtual void InitializeComponent();
 	virtual void BeginPlay() override;
 	virtual void Shutdown();
 	virtual void EndPlay(EEndPlayReason::Type EndPlayReason) override;
